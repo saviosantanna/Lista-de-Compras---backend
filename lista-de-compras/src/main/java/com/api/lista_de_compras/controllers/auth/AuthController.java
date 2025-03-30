@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import com.api.lista_de_compras.dto.LoginRequestDto;
 import com.api.lista_de_compras.dto.RegisterRequestDto;
@@ -17,6 +19,7 @@ import com.api.lista_de_compras.dto.ResponseAuthDto;
 import com.api.lista_de_compras.model.UserRegister;
 import com.api.lista_de_compras.repository.UserRegisterRepository;
 import com.api.lista_de_compras.services.TelegramService;
+import com.api.lista_de_compras.services.EmailService.EmailService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +34,9 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final UserRegisterRepository authRepository;
     private final TelegramService telegramService;
+    private final EmailService emailService;
+    @Autowired
+    private TemplateEngine templateEngine;
     private static Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("login")
@@ -76,8 +82,23 @@ public class AuthController {
                 // body(new ResponseAuthDto("error", "E-mail já cadastrado."));
             } else {
                 this.telegramService.sendMessage("Novo usuário '" + body.username() + "' cadastrado");
+
+                Context context = new Context();
+                context.setVariable("user", body.name());
+                String textEmail = templateEngine.process("emailCadastro", context);
+
+
+                
+                this.emailService.sendEmail(body.email(), "Cadastro realizado", textEmail);
+                UserRegister newUser = new UserRegister();
+                    newUser.setUsername(body.username());
+                    newUser.setName(body.name());
+                    newUser.setEmail(body.email());
+                    newUser.setPassword(body.password());
+                authRepository.save(newUser);
                 return ResponseEntity.ok().body(new ResponseAuthDto("success", "Cadastro realizado com sucesso!"));
             }
+            //saasdsadasdas
 
             // if(user.getPassword().equals(body.password())){
             //     logger.info("Usuario " + body.username() + " logado com sucesso." );

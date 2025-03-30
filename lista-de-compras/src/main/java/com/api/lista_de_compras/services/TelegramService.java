@@ -12,7 +12,6 @@ public class TelegramService {
     private String botToken;
     @Value("${telegram.chatId}")
     private String chatId;
-
     private final RestTemplate restTemplate;
 
     public TelegramService(RestTemplate restTemplate) {
