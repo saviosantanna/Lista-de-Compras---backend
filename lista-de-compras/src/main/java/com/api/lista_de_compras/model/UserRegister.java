@@ -1,6 +1,6 @@
 package com.api.lista_de_compras.model;
 
-import java.util.UUID;
+// import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

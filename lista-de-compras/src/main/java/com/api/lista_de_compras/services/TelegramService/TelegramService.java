@@ -1,7 +1,8 @@
-package com.api.lista_de_compras.services;
+package com.api.lista_de_compras.services.TelegramService;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -24,7 +25,7 @@ public class TelegramService {
         try {
             restTemplate.getForObject(url, String.class);
             System.out.println("Mensagem enviada com sucesso!");
-        } catch (Exception e) {
+        } catch (RestClientException e) {
             System.err.println("Erro ao enviar mensagem para o Telegram: " + e.getMessage());
         }
     }
