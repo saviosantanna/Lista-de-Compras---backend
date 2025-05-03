@@ -25,7 +25,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-        working-directory: ./backendlista-de-compras
+        working-directory: ./lista-de-compras
         run: 
           mvn clean install
         
