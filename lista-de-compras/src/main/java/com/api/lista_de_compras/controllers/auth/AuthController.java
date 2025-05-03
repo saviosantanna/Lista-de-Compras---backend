@@ -1,6 +1,10 @@
 package com.api.lista_de_compras.controllers.auth;
 
 import java.util.Date;
+
+import lombok.Getter;
+import lombok.Setter;   
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AuthController {
     
+    
     private final PasswordEncoder passwordEncoder;
     private final UserRegisterRepository authRepository;
     private final TelegramService telegramService;
@@ -48,7 +53,7 @@ public class AuthController {
         
         try {
             UserRegister user = authRepository.findByUsername(body.username());
-            if(passwordEncoder.matches(body.password(),user.getPassword())){
+            if(passwordEncoder.matches(body.password(), user.getPassword())){
                 logger.info("Usuario " + body.username() + " logado com sucesso." );
 
                 String token = this.tokenService.generateToken(user);

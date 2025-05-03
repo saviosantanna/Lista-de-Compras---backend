@@ -13,8 +13,9 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost:4200");
-        configuration.addAllowedOrigin("http://192.168.0.16:4200");
+        configuration.addAllowedOrigin("http://192.168.0.20:4200");
         configuration.addAllowedOrigin("http://192.168.100.16:4200");
+        configuration.addAllowedOrigin("https://fe-shopping-list.azurewebsites.net");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
