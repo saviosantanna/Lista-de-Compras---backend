@@ -107,6 +107,12 @@
 							<version>1.18.30</version>
 						</path>
 					</annotationProcessorPaths>
+					 <archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.lista-de-compras.ListaDeComprasApplication</mainClass>
+						</manifest>
+						</archive>
 				</configuration>
 			</plugin>
 		</plugins>
