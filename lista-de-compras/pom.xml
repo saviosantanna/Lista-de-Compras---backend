@@ -11,7 +11,7 @@
 	<groupId>com.api</groupId>
 	<artifactId>ROOT</artifactId>
 	<!-- <version>0.0.1-SNAPSHOT</version> -->
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ROOT</name>
 	<description>Listas de Compras</description>
 	<url/>
