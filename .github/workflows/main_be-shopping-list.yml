@@ -28,13 +28,15 @@ jobs:
         working-directory: ./lista-de-compras
         run: 
           mvn clean install
-        
+
+      - name: Rename WAR to ROOT.war
+        run: mv lista-de-compras/target/*.war lista-de-compras/target/ROOT.war        
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: 'lista-de-compras/target/*.war'
+          path: 'lista-de-compras/target/ROOT.war'
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,5 +68,4 @@ jobs:
         with:
           app-name: 'be-shopping-list'
           slot-name: 'Production'
-          package: '*.war'
-          
+          package: 'target/ROOT.war'
