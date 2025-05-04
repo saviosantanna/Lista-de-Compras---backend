@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: 'lista-de-compras/target/ROOT-3.4.5.jar'
+          path: lista-de-compras/target/ROOT-3.4.5.jar
 
   deploy:
     runs-on: ubuntu-latest
