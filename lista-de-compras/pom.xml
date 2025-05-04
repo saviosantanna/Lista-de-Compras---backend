@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>lista-de-compras</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>ROOT</artifactId>
+	<!-- <version>0.0.1-SNAPSHOT</version> -->
 	<packaging>war</packaging>
-	<name>lista-de-compras</name>
+	<name>ROOT</name>
 	<description>Listas de Compras</description>
 	<url/>
 	<licenses>
