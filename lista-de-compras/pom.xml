@@ -110,9 +110,9 @@
 					 <archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.lista-de-compras.ListaDeComprasApplication</mainClass>
+							<mainClass>com.api.lista_de_compras.ListaDeComprasApplication</mainClass>
 						</manifest>
-						</archive>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
