@@ -46,10 +46,10 @@ public class TokenService {
     }
 
     public Instant expirationDate(String type){
-        if(type.equals("short")){
-            return LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("0"));
+       if(type.equals("short")){
+            return LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("-03:00"));
         } else {
-            return LocalDateTime.now().plusMinutes(3).toInstant(ZoneOffset.of("0"));
+            return LocalDateTime.now().plusMinutes(3).toInstant(ZoneOffset.of("-03:00"));
         }
         
         // return null;
