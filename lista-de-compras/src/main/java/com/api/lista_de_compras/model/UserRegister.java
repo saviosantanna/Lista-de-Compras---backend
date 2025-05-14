@@ -1,7 +1,8 @@
 package com.api.lista_de_compras.model;
 
 // import java.util.UUID;
-import jakarta.persistence.Column;
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class UserRegister {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     // @Column(name = "username")
     private String username;
     // @Column(name = "name")

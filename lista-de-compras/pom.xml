@@ -47,17 +47,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-sqlserver</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
+  			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,7 +61,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
-    </dependency>
+    	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -92,6 +84,10 @@
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
 			<version>4.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -125,6 +121,21 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+  <groupId>org.flywaydb</groupId>
+  <artifactId>flyway-maven-plugin</artifactId>
+  <configuration>
+    <url>jdbc:postgresql://yamabiko.proxy.rlwy.net:27355/railway</url>
+    <user>postgres</user>
+    <password>GVeuqhXFwEiNiqqWLKifQVBOErcWSAqe</password>
+    <schemas>
+      <schema>public</schema>
+    </schemas>
+    <locations>
+      <location>filesystem:src/main/resources/db/migration</location>
+    </locations>
+  </configuration>
+</plugin>
 		</plugins>
 	</build>
 </project>

@@ -1,8 +1,10 @@
 package com.api.lista_de_compras.services.TokenService;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+// import java.util.TimeZone;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,28 +18,29 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 
 @Service
 public class TokenService {
+
     @Value("${api.security.token.secret}")
     String secret;
 
     private final static Logger logger = LoggerFactory.getLogger(TokenService.class);
 
-    public String generateToken(UserRegister user){
-        
+    public String generateToken(UserRegister user) {
+
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             String token = JWT.create()
-                            .withIssuer("lista-de-compras")
-                            // .withSubject(user.getUsername())
-                            .withClaim("user", user.getUsername())
-                            // .withClaim("nome Claim", "teste nome Clain")
-                            .withExpiresAt(this.expirationDate("short"))
-                            .sign(algorithm);
+                    .withIssuer("lista-de-compras")
+                    // .withSubject(user.getUsername())
+                    .withClaim("user", user.getUsername())
+                    // .withClaim("nome Claim", "teste nome Clain")
+                    .withExpiresAt(this.expirationDate("short"))
+                    .sign(algorithm);
 
             logger.info("JWT Criado:" + token);
             return token;
         } catch (JWTCreationException | IllegalArgumentException e) {
-           
+
             logger.info("Erro ao gerar JWT para usuário: " + user.getUsername());
             // System.out.println("Deu zika no JWT.");
             return "Erro ao gerar JWT.";
@@ -45,13 +48,12 @@ public class TokenService {
 
     }
 
-    public Instant expirationDate(String type){
-       if(type.equals("short")){
-            return LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.UTC);
+    public Instant expirationDate(String type) {
+        if (type.equals("short")) {
+            return ZonedDateTime.now(ZoneOffset.of("-03:00")).plusMinutes(1).toInstant();
         } else {
-            return LocalDateTime.now().plusMinutes(3).toInstant(ZoneOffset.UTC);
+            return ZonedDateTime.now(ZoneOffset.of("-03:00")).plusMinutes(3).toInstant();
         }
-        
         // return null;
     }
 
